@@ -35,7 +35,7 @@ var app = {
     onDeviceReady: function () {
         app.receivedEvent('deviceready');
 
-        alert('Device Ready: ' + id);
+        alert('Device Ready');
 
         var mw_c = mwbScanner.getConstants()
             , settings = [
@@ -73,14 +73,14 @@ var app = {
             ];
 
         mwbScanner.loadSettings(settings).then(function (response) {
-            console.log(response);
+            alert(response);
         }).catch(function (reason) {
-            console.log(reason);
+            alert(reason);
         });
     },
     // Update DOM on a Received Event
     receivedEvent: function (id) {
 
-        alert('Received Event: ' + id);
+        alert('Received Event: ');
     }
 };
