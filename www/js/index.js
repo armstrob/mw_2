@@ -67,7 +67,7 @@ var app = {
             //            {"method" : "MWBsetMinLength", "value" : [mw_c.MWB_CODE_MASK_39, 5]},
             //            {"method" : "MWBsetMinLength", "value" : [mw_c.MWB_CODE_MASK_CODABAR, 5]},
             //            {"method" : "MWBsetMinLength", "value" : [mw_c.MWB_CODE_MASK_11, 5]},
-            { "method": 'MWBsetDirection', "value": [MWB_SCANDIRECTION_OMNI] }
+            { "method": 'MWBsetDirection', "value": [mw_c.MWB_SCANDIRECTION_OMNI] }
         ];
 
         mwbScanner.loadSettings(settings).then(function (response) {
