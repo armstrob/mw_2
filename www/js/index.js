@@ -35,42 +35,40 @@ var app = {
     onDeviceReady: function () {
         app.receivedEvent('deviceready');
 
-        alert('Device Ready');
-
-        var mw_c = mwbScanner.getConstants()
-            , settings = [
-                { 'method': 'MWBsetActiveCodes', 'value': [mw_c.MWB_CODE_MASK_DM] },
-                { "method": 'MWBenableZoom', "value": [true] },
-                { "method": 'MWBsetZoomLevels', "value": [200, 400, 1] },
-                // {"method" : 'MWBsetInterfaceOrientation', "value" : [mw_c.OrientationLandscapeLeft]},
-                { "method": 'MWBsetOverlayMode', "value": [mw_c.OverlayModeImage] },
-                { "method": 'MWBsetLevel', "value": [3] }, //3 will try to scan harder than the default which is 2
-                { "method": 'MWBenableHiRes', 'value': [true] }, //possible setting
-                { "method": 'MWBenableFlash', 'value': [true] }, //possible setting
-                { "method": 'MWBuse60fps', 'value': [true] }, //possible
-                //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_25, 2, 2, 96, 96]},
-                //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_39, 2, 2, 96, 96]},
-                //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_93, 2, 2, 96, 96]},
-                //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_128, 2, 2, 96, 96]},
-                //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_AZTEC, 20, 2, 60, 96]},
-                { "method": "MWBsetScanningRect", "value": [mw_c.MWB_CODE_MASK_DM, 20, 2, 60, 96] },
-                //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_EANUPC, 2, 2, 96, 96]},
-                //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_PDF, 2, 2, 96, 96]},
-                //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_QR, 20, 2, 60, 96]},
-                //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_RSS, 2, 2, 96, 96]},
-                //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_CODABAR, 2, 2, 96, 96]},
-                //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_DOTCODE, 30, 20, 40, 60]},
-                //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_11, 2, 2, 96, 96]},
-                //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_MSI, 2, 2, 96, 96]},
-                //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_MAXICODE, 20, 2, 60, 96]},
-                //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_POSTAL, 2, 2, 96, 96]},
-                //            {"method" : "MWBsetMinLength", "value" : [mw_c.MWB_CODE_MASK_25, 5]},
-                //            {"method" : "MWBsetMinLength", "value" : [mw_c.MWB_CODE_MASK_MSI, 5]},
-                //            {"method" : "MWBsetMinLength", "value" : [mw_c.MWB_CODE_MASK_39, 5]},
-                //            {"method" : "MWBsetMinLength", "value" : [mw_c.MWB_CODE_MASK_CODABAR, 5]},
-                //            {"method" : "MWBsetMinLength", "value" : [mw_c.MWB_CODE_MASK_11, 5]},
-                { "method": 'MWBsetDirection', "value": [MWB_SCANDIRECTION_OMNI] }
-            ];
+        var mw_c = mwbScanner.getConstants(), settings;
+        settings = [
+            { 'method': 'MWBsetActiveCodes', 'value': [mw_c.MWB_CODE_MASK_DM] },
+            { "method": 'MWBenableZoom', "value": [true] },
+            { "method": 'MWBsetZoomLevels', "value": [200, 400, 1] },
+            // {"method" : 'MWBsetInterfaceOrientation', "value" : [mw_c.OrientationLandscapeLeft]},
+            { "method": 'MWBsetOverlayMode', "value": [mw_c.OverlayModeImage] },
+            { "method": 'MWBsetLevel', "value": [3] }, //3 will try to scan harder than the default which is 2
+            { "method": 'MWBenableHiRes', 'value': [true] }, //possible setting
+            { "method": 'MWBenableFlash', 'value': [true] }, //possible setting
+            { "method": 'MWBuse60fps', 'value': [true] }, //possible
+            //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_25, 2, 2, 96, 96]},
+            //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_39, 2, 2, 96, 96]},
+            //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_93, 2, 2, 96, 96]},
+            //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_128, 2, 2, 96, 96]},
+            //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_AZTEC, 20, 2, 60, 96]},
+            { "method": "MWBsetScanningRect", "value": [mw_c.MWB_CODE_MASK_DM, 20, 2, 60, 96] },
+            //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_EANUPC, 2, 2, 96, 96]},
+            //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_PDF, 2, 2, 96, 96]},
+            //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_QR, 20, 2, 60, 96]},
+            //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_RSS, 2, 2, 96, 96]},
+            //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_CODABAR, 2, 2, 96, 96]},
+            //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_DOTCODE, 30, 20, 40, 60]},
+            //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_11, 2, 2, 96, 96]},
+            //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_MSI, 2, 2, 96, 96]},
+            //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_MAXICODE, 20, 2, 60, 96]},
+            //            {"method" : "MWBsetScanningRect", "value" : [mw_c.MWB_CODE_MASK_POSTAL, 2, 2, 96, 96]},
+            //            {"method" : "MWBsetMinLength", "value" : [mw_c.MWB_CODE_MASK_25, 5]},
+            //            {"method" : "MWBsetMinLength", "value" : [mw_c.MWB_CODE_MASK_MSI, 5]},
+            //            {"method" : "MWBsetMinLength", "value" : [mw_c.MWB_CODE_MASK_39, 5]},
+            //            {"method" : "MWBsetMinLength", "value" : [mw_c.MWB_CODE_MASK_CODABAR, 5]},
+            //            {"method" : "MWBsetMinLength", "value" : [mw_c.MWB_CODE_MASK_11, 5]},
+            { "method": 'MWBsetDirection', "value": [MWB_SCANDIRECTION_OMNI] }
+        ];
 
         mwbScanner.loadSettings(settings).then(function (response) {
             alert(response);
@@ -81,6 +79,6 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function (id) {
 
-        alert('Received Event: ');
+        alert('Received Event: ' + id);
     }
 };
